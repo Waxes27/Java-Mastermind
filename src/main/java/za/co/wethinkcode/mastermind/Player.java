@@ -4,7 +4,8 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class Player {
-    private final Scanner inputScanner;
+    final Scanner inputScanner;
+    public int turns = 11;
 
     public Player(){
         this.inputScanner = new Scanner(System.in);
@@ -21,6 +22,22 @@ public class Player {
      * @return the value entered by the user
      */
     public String getGuess(){
-        return null;
+
+        System.out.println("Input 4 digit code:");
+        String user_in = this.inputScanner.next();
+
+        if (user_in.length() != 4){return getGuess();}
+
+        if ( user_in.equalsIgnoreCase("exit") || user_in.equalsIgnoreCase("quit") ){
+            return user_in;
+        }
+
+        for ( int i=0; i< 4; i++){
+            if ( Character.isLetter(user_in.charAt(i)) ){
+                return getGuess();
+            }
+        }
+
+        return user_in;
     }
 }

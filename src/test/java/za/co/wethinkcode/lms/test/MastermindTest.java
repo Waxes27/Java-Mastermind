@@ -36,9 +36,11 @@ class MastermindTest {
 
     @Test
     void testMainCorrect() {
+        System.out.println("Starting");
         Random randomNumberMock = Mockito.mock(Random.class);
         when(randomNumberMock.nextInt(anyInt()))
-                .thenReturn(5, 0, 6, 7);
+                .thenReturn(5,0, 6, 7);
+        System.out.println("Acquired Numbers");
 
         InputStream mockedInput = new ByteArrayInputStream("1234\n6134\n6178\n".getBytes());
         Mastermind mastermind = new Mastermind(new CodeGenerator(randomNumberMock), new Player(mockedInput));
