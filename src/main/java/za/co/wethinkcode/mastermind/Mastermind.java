@@ -1,6 +1,6 @@
 package za.co.wethinkcode.mastermind;
 
-import java.util.Arrays;
+
 
 public class Mastermind {
     private final String code;
@@ -27,41 +27,64 @@ public class Mastermind {
 
     public void runGame(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//      WHILE COMPARING STRINGS use object.equals() (Credit IntelliJ)                                                          /
+//      WHILE COMPARING STRINGS use object.equals() (Credit IntelliJ)                                                  /
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //        System.out.println(this.code);
+
         int turns = player.turns;
-        while (turns != 0){
+//        System.out.println(turns);
+//        String user_in = player.getGuess();
+        while ( true ){
             String user_in = player.getGuess();
 
 
+            if ( turns == 0) {
+                System.out.printf("Number of correct digits in correct place: %d\n",correctSamePosition);
+                System.out.printf("Number of correct digits not in correct place: %d\n",correctWrongPosition);
+                System.out.println("No more turns left.");
+                System.out.printf("The code was: %s",this.code);
+                break;
+            }
+//            System.out.println(turns);
+//            user_in = player.getGuess();
+
+
+//            int i = 0;
+
             for (int i = 0 ; i < 4; i++){
                 if ( user_in.charAt(i) == this.code.charAt(i)){correctSamePosition++;}
-                else if (this.code.indexOf(user_in.charAt(i)) < 0){correctWrongPosition++;}
+                else if (this.code.indexOf(user_in.charAt(i)) > 0){correctWrongPosition++;}
                 }
 
 
+
+
             if (user_in.equals(this.code)){
+                System.out.printf("Number of correct digits in correct place: %d\n",correctSamePosition);
+                System.out.printf("Number of correct digits not in correct place: %d\n",correctWrongPosition);
                 System.out.println("Congratulations! You are a codebreaker!");
+                System.out.printf("The code was: %s",this.code);
                 break;
             }
             else if (user_in.equalsIgnoreCase("exit") || user_in.equalsIgnoreCase("quit")){
                 System.exit(999);
             }
-            else{
+            else if ( turns > -2) {
                 System.out.printf("Number of correct digits in correct place: %d\n",correctSamePosition);
                 System.out.printf("Number of correct digits not in correct place: %d\n",correctWrongPosition);
                 System.out.printf("Turns left: %s\n", turns);
+                turns--;
+
+
             }
 
-            turns--;
+            correctSamePosition = 0;
             correctWrongPosition = 0;
-            correctWrongPosition = 0;
+
         }
-        if ( turns == 0) {
-            System.out.println("No more turns left.");
-        }
-        System.out.printf("The code was: %s",this.code);
+
+
+
 
     }
 
