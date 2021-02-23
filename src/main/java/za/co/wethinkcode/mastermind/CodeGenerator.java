@@ -27,7 +27,7 @@ public class CodeGenerator {
         StringBuilder numbers = new StringBuilder();
 
         for ( int i=0; i<4; i++) {
-            int number = this.random.nextInt(9)+1;
+            int number = this.random.nextInt(8)+1;
             numbers.append(number);
         }
 //        System.out.println(numbers.toString());
